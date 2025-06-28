@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 
-:layer base {
+@layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -88,11 +88,12 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
@@ -128,58 +129,31 @@
   .gradient-pink {
     background: linear-gradient(135deg, hsl(var(--dashboard-pink)), hsl(var(--dashboard-pink-light)));
   }
-}
 
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-}
-
-
-@layer utilities {
+  /* Container utilities */
   .container {
-    @apply mx-auto px-8;
-    max-width: 1400px;
-  }
-}
-
-
-@layer utilities {
-  .bg-base {
-    background-color: var(--background);
-  }
-  .text-base {
-    color: var(--foreground);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
-  .font-sans {
-    font-family: var(--font-sans);
+  @media (min-width: 1400px) {
+    .container {
+      max-width: 1400px;
+    }
   }
 
-  .font-mono {
-    font-family: var(--font-mono);
-  }
-
+  /* Animation utilities */
   .animate-accordion-down {
     animation: accordion-down 0.2s ease-out;
   }
-
+  
   .animate-accordion-up {
     animation: accordion-up 0.2s ease-out;
   }
-}
 
-
-@layer base {
   @keyframes accordion-down {
     from {
       height: 0;
@@ -197,4 +171,48 @@ body {
       height: 0;
     }
   }
+
+  /* Border radius utilities */
+  .rounded-lg {
+    border-radius: var(--radius);
+  }
+  
+  .rounded-md {
+    border-radius: calc(var(--radius) - 2px);
+  }
+  
+  .rounded-sm {
+    border-radius: calc(var(--radius) - 4px);
+  }
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
 }
