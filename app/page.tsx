@@ -1,5 +1,3 @@
-"use client";
-
 import React from 'react';
 import { MetricWidgets } from './components/MetricWidgets';
 import { UserTable } from './components/UserTable';
